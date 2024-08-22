@@ -2,22 +2,58 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { Netflix_bg } from "../utils/constant";
 import { checkValidteData } from "../utils/Validate";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 function Login() {
   const [isSignform, setSignform] = useState(true);
   const [errorMassage, seterrMassage] = useState(null);
   const toogleSignForm = () => {
     setSignform(!isSignform);
   };
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
   const handleSubmitBtn = () => {
-    const message = checkValidteData(email.current.value,password.current.value,
+    const message = checkValidteData(
+      email.current.value,
+      password.current.value
     );
-    console.log(email.current.value);
-    console.log(password.current.value);
-    console.log(message);
+
     seterrMassage(message);
+    if (message) return;
+
+    if (isSignform) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          seterrMassage("Enter a Valid Email and Password!")
+        });
+    } else {
+      //sign in
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          
+          const user = userCredential.user;
+          console.log(user);
+          
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          seterrMassage("Enter a Valid Email and Password!")
+        });
+    }
   };
   return (
     <div>
@@ -34,6 +70,7 @@ function Login() {
         </h1>
         {isSignform && (
           <input
+            ref={name}
             type="text"
             placeholder="Full Name"
             className="p-4 my-4 w-full bg-slate-700 rounded-lg border border-[1] border-white"
