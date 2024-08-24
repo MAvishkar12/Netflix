@@ -5,9 +5,9 @@ import { checkValidteData } from "../utils/Validate";
 import { createUserWithEmailAndPassword , updateProfile} from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+
 function Login() {
-  const navigate = useNavigate();
+
   const [isSignform, setSignform] = useState(true);
   const [errorMassage, seterrMassage] = useState(null);
   const name=useRef(null)
@@ -32,14 +32,14 @@ function Login() {
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
-            displayName: name.current.value, 
+            displayName: name.current.value  // new updated user information 
           }).then(() => {
             console.log(user);
-            navigate("/browse");
-            // ...
+          
+            
           }).catch((error) => {
-           seterrMassage(error.message)
-            // ...
+           seterrMassage(error.message)  // if error occur during login 
+          
           });
          
         })
@@ -57,8 +57,8 @@ function Login() {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
+         
+         
         })
         .catch((error) => {
           const errorCode = error.code;
