@@ -2,17 +2,15 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { Netflix_bg } from "../utils/constant";
 import { checkValidteData } from "../utils/Validate";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword , updateProfile} from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-
+import { useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
   const [isSignform, setSignform] = useState(true);
   const [errorMassage, seterrMassage] = useState(null);
-  const toogleSignForm = () => {
-    setSignform(!isSignform);
-  };
-  const name = useRef(null);
+  const name=useRef(null)
   const email = useRef(null);
   const password = useRef(null);
 
@@ -33,26 +31,39 @@ function Login() {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: name.current.value, 
+          }).then(() => {
+            console.log(user);
+            navigate("/browse");
+            // ...
+          }).catch((error) => {
+           seterrMassage(error.message)
+            // ...
+          });
+         
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          seterrMassage("Enter a Valid Email and Password!")
+          seterrMassage(errorCode + "" + errorMessage);
         });
     } else {
       //sign in
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
-          
           const user = userCredential.user;
           console.log(user);
-          
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          seterrMassage("Enter a Valid Email and Password!")
+          seterrMassage(errorCode + "-" + errorMessage);
         });
     }
   };
@@ -71,7 +82,7 @@ function Login() {
         </h1>
         {isSignform && (
           <input
-            ref={name}
+          ref={name}
             type="text"
             placeholder="Full Name"
             className="p-4 my-4 w-full bg-slate-700 rounded-lg border border-[1] border-white"
@@ -97,10 +108,15 @@ function Login() {
         >
           {isSignform ? "Sign Up" : "Sign In"}
         </button>
-        <p className="py-4 cursor-pointer" onClick={toogleSignForm}>
+        <p
+          className="py-4 cursor-pointer"
+          onClick={() => {
+            setSignform(!isSignform);
+          }}
+        >
           {isSignform
-            ? "New to Netflix ? Sign In Now"
-            : "Already a registered ? Sign Up Now "}
+            ? "Already a registered ? Sign In Now "
+            : "New to Netflix ? Sign Up Now"}
         </p>
       </form>
     </div>
