@@ -4,6 +4,8 @@ export const Netflix_logo= "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9
 
 export const UserImg="https://i.pinimg.com/originals/e3/94/30/e39430434d2b8207188f880ac66c6411.png"
 
+
+export const Poster_url="https://image.tmdb.org/t/p/w500"
 export const Api_Options={
     method: 'GET',
     headers: {
