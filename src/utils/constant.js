@@ -10,7 +10,7 @@ export const Api_Options={
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWI5ZTk4MWI3ZTI4OWYzMmQzMzQ4YjYyNTg4MzVlNCIsIm5iZiI6MTcyNDUyMTU2NC43NDQ3MDMsInN1YiI6IjY2Y2ExNmVlZGNhZDc5M2I0MzNjZmM2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0QAMO-UQMNHeqLhEJzMaaV_cza9Jj5B3p41-oPdr-5U'
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWI5ZTk4MWI3ZTI4OWYzMmQzMzQ4YjYyNTg4MzVlNCIsIm5iZiI6MTcyNDUyMTU2NC43NDQ3MDMsInN1YiI6IjY2Y2ExNmVlZGNhZDc5M2I0MzNjZmM2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0QAMO-UQMNHeqLhEJzMaaV_cza9Jj5B3p41-oPdr-5U "
     }
   };
 
@@ -29,3 +29,8 @@ export const Api_Options={
   }
 
 ]
+
+export const gemini_key="AIzaSyAZ5urNaLNS8CRaLJcF9pJYn1KfGpJ58kw"
+
+
+

@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import { Api_Options } from "../utils/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNowPlayingMovie } from "../utils/movieSlice";
 // Custom hook / user defined hook 
 // hook is nothing but Js function return some Jsx similar code
 const useNowPlayingMovie = () => {
   const dispatch = useDispatch();
+  const nowplaying=useSelector((store)=>store.movies.nowPlayingMovies);
 
-  useEffect(() => {
-    getNowPlayingMovie();
-  }, []);
+ 
 
   const getNowPlayingMovie = async () => {
     const data = await fetch(
@@ -20,6 +19,9 @@ const useNowPlayingMovie = () => {
   
     dispatch(addNowPlayingMovie(json.results));
   };
+  useEffect(() => {
+   !nowplaying && getNowPlayingMovie();
+  }, []);
 };
 
 export default useNowPlayingMovie;

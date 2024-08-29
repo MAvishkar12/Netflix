@@ -5,11 +5,13 @@ const gptSlice=createSlice({
     name:'gpt',
     initialState:{
         gptSearch:false,
+       
     },
     reducers:{
         addtooggle:(state)=>{
             state.gptSearch=!state.gptSearch
-        }
+        },
+       
     }
 
 })
