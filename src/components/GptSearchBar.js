@@ -85,14 +85,14 @@ console.log(gptMovies);
  };
 
  return (
-    <div className="pt-[8%]  flex justify-center">
+    <div className="pt-[36%] md:pt-[10%]  flex justify-center">
       <Form
-        className="w-1/2  bg-black grid grid-cols-12 "
+        className=" w-full md:w-1/2  bg-black grid grid-cols-12 "
         onSubmit={(e) => e.preventDefault}
       >
         <input
           type="text"
-          className="p-4 m-4 col-span-9"
+          className="p-4 m-4 col-span-9 rounded-lg shadow-inner shadow-[inset 0 0 10px 2px rgba(173,216,230,0.6)]"
           ref={SearchText}
           placeholder={lang[langkey].gptSearchText}
         ></input>

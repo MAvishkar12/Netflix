@@ -9,7 +9,7 @@ function SecondaryContainer() {
   return (
     movies.nowPlayingMovies && (
       <div className=" bg-black">
-        <div className="-mt-20 relative z-20">
+        <div className="mt-0 md:-mt-20 md:pl-2 pl-4 relative z-20">
         <MovieList title={lang[langkey].NowPlaytitle}movies={movies.nowPlayingMovies}/> 
         </div>
         <MovieList title={lang[langkey].Toptitle}movies={movies.topRated}/> 

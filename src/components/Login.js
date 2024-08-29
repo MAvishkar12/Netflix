@@ -71,11 +71,11 @@ function Login() {
     <div>
       <Header />
       <div className="absolute">
-        <img src={Netflix_bg} alt="netflix-bg" />
+        <img className="bg-cover bg-center min-h-screen sm:bg-auto md:bg-contain" src={Netflix_bg} alt="netflix-bg" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute w-4/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-80"
+        className="absolute w-full md:w-4/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-80"
       >
         <h1 className="font-bold text-3xl py-4">
           {isSignform ? "Sign Up" : "Sign In"}

@@ -13,7 +13,7 @@ function MainContainer() {
 
   const { id } = mainmovie;
   return (
-    <div>
+    <div className="pt-[30%] bg-black  md:pt-0 ">
       <VideoTitle title={lang[langkey].movieTitle} overview={lang[langkey].movieText} />
       <VideoBacground  movieid={id}/>
     </div>
