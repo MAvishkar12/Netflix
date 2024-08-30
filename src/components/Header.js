@@ -13,11 +13,10 @@ import { Supported_language } from "../utils/constant";
 import { ChangeLanguage } from "../utils/confligSlice";
 
 function Header() {
-  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  const showGpt=useSelector((store)=>store.gpt.gptSearch)
+  const showGpt = useSelector((store) => store.gpt.gptSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -30,28 +29,22 @@ function Header() {
       });
   };
 
-  const handlelanguageChange=(e)=>{
-   
-    
-    dispatch( ChangeLanguage(e.target.value))
-  }
+  const handlelanguageChange = (e) => {
+    dispatch(ChangeLanguage(e.target.value));
+  };
 
- const handleGpt=()=>{
-     dispatch(addtooggle())
-    
-     
- }
+  const handleGpt = () => {
+    dispatch(addtooggle());
+  };
   useEffect(() => {
-
-    
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName })); 
-        navigate('/browse')// user sign in
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse"); // user sign in
       } else {
         dispatch(removeuser()); // if user signout remove user
-        navigate('/')
+        navigate("/");
       }
     });
     return () => unsubscribe();
@@ -60,29 +53,44 @@ function Header() {
   return (
     <>
       <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full flex justify-between  flex-col md:flex-row">
-        <img src={Netflix_logo} className="w-40  mx-auto  md:mx-0" alt="logo"></img>
-        {user && ( <div className="flex p-2 justify-between">
-          <select className="p-1 m-4 bg-gray-500 text-white rounded-2xl" onChange={handlelanguageChange}>
-            {Supported_language.map((lan)=><option value={lan.identifier} key={lan.identifier}>{lan.name}</option>)}
-           
-
-          </select>
-          <button className=" px-4 m-2 text-white bg-violet-800  rounded-lg shadow-md shadow-white" onClick={handleGpt} > 
-            {showGpt?"Home":"GEMINI Search"}
-          </button>
-         <img className="hidden md:block w-7 h-7 my-5" src={UserImg} alt="user-img"></img>
-          {/* <h3  className="w-7 h-7 my-5 mx-3 text-white">{user.displayName}</h3> */}
+        <img
+          src={Netflix_logo}
+          className="w-40  mx-auto  md:mx-0"
+          alt="logo"
+        ></img>
+        {user && (
+          <div className="flex p-2 justify-between">
+            <select
+              className="p-1 m-4 bg-gray-500 text-white rounded-2xl"
+              onChange={handlelanguageChange}
+            >
+              {Supported_language.map((lan) => (
+                <option value={lan.identifier} key={lan.identifier}>
+                  {lan.name}
+                </option>
+              ))}
+            </select>
+            <button
+              className=" px-4 m-2 text-white bg-violet-800  rounded-lg shadow-md shadow-white"
+              onClick={handleGpt}
+            >
+              {showGpt ? "Home" : "GEMINI Search"}
+            </button>
+            <img
+              className="hidden md:block w-7 h-7 my-5"
+              src={UserImg}
+              alt="user-img"
+            ></img>
+            {/* <h3  className="w-7 h-7 my-5 mx-3 text-white">{user.displayName}</h3> */}
             <button
               onClick={handleSignOut}
-              
               color="error"
               className="mx-2 my-4 bg-red-700 text-white px-1 py-1 h-10 rounded-xl"
             >
               {"Sign Out"}
             </button>
-            
-          </div> )
-        }
+          </div>
+        )}
       </div>
     </>
   );

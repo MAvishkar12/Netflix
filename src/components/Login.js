@@ -2,15 +2,14 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { Netflix_bg } from "../utils/constant";
 import { checkValidteData } from "../utils/Validate";
-import { createUserWithEmailAndPassword , updateProfile} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
-
   const [isSignform, setSignform] = useState(true);
   const [errorMassage, seterrMassage] = useState(null);
-  const name=useRef(null)
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
@@ -32,16 +31,14 @@ function Login() {
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
-            displayName: name.current.value  // new updated user information 
-          }).then(() => {
-            console.log(user);
-          
-            
-          }).catch((error) => {
-           seterrMassage(error.message)  // if error occur during login 
-          
-          });
-         
+            displayName: name.current.value, // new updated user information
+          })
+            .then(() => {
+              console.log(user);
+            })
+            .catch((error) => {
+              seterrMassage(error.message); // if error occur during login
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -57,8 +54,6 @@ function Login() {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-         
-         
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -71,7 +66,11 @@ function Login() {
     <div>
       <Header />
       <div className="absolute">
-        <img className="bg-cover bg-center min-h-screen sm:bg-auto md:bg-contain" src={Netflix_bg} alt="netflix-bg" />
+        <img
+          className="bg-cover bg-center min-h-screen sm:bg-auto md:bg-contain"
+          src={Netflix_bg}
+          alt="netflix-bg"
+        />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -82,7 +81,7 @@ function Login() {
         </h1>
         {isSignform && (
           <input
-          ref={name}
+            ref={name}
             type="text"
             placeholder="Full Name"
             className="p-4 my-4 w-full bg-slate-700 rounded-lg border border-[1] border-white"

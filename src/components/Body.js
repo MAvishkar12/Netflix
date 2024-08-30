@@ -4,8 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Browse from "./Browse";
 
 function Body() {
-
-
   const appouter = createBrowserRouter([
     {
       path: "/",
@@ -17,7 +15,6 @@ function Body() {
     },
   ]);
 
-  
   return (
     <div>
       {/* */}

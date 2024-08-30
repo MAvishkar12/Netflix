@@ -3,9 +3,7 @@ export const checkValidteData = (email, password) => {
     email
   );
   const isPasswordValid =
-    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/.test(
-      password
-    );
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/.test(password);
   if (!isEmailValid) return "Email id is not Valid";
   if (!isPasswordValid) return "Password is not valid";
 
