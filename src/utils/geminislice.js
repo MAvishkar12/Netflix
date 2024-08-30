@@ -13,7 +13,8 @@ const geminislice=createSlice({
         },
         addMovieResults:(state,action)=>{
             state.movieResults=action.payload
-        }
+        },
+      
     }
 })
 

@@ -55,6 +55,7 @@ function GptSearchBar() {
 
    const handleGptSearch = async () => {
     console.log(SearchText.current.value);
+    if(!SearchText.current.value) return null;
     // gemini function here
     const query="Act as a movie Recommendation System and Suggest Some movies for the query :"+SearchText.current.value+"Only give me name of 5 movies  , comma seprated like the example result give ahead .Example Result :Gadar Netflix,Sholy Amzaon Prime,Don Zee5,Golmal Hotstart,Koi mil Gaya Netflix remove \n   from result"
     const chatSession = model.startChat({
@@ -71,7 +72,7 @@ function GptSearchBar() {
   const gptMovies=result.response.text().replace(/\n/g, "").split(", ");
   
 
-console.log(gptMovies);
+
 
   const promisearray= gptMovies.map(async (movie)=> searchMovieTmdb(movie));
   if(promisearray===null) return <h1>Loadding</h1>

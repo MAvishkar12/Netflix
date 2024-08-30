@@ -18,6 +18,7 @@ function Header() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const showGpt=useSelector((store)=>store.gpt.gptSearch)
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -37,6 +38,8 @@ function Header() {
 
  const handleGpt=()=>{
      dispatch(addtooggle())
+    
+     
  }
   useEffect(() => {
 
@@ -71,6 +74,8 @@ function Header() {
           {/* <h3  className="w-7 h-7 my-5 mx-3 text-white">{user.displayName}</h3> */}
             <button
               onClick={handleSignOut}
+              
+              color="error"
               className="mx-2 my-4 bg-red-700 text-white px-1 py-1 h-10 rounded-xl"
             >
               {"Sign Out"}
