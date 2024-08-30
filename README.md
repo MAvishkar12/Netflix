@@ -3,6 +3,27 @@
 Welcome to Netflix Gemini, a React.js application that brings a modern movie browsing experience with personalized recommendations.
 
 Live Link : https://netflixgemini-delta.vercel.app/
+
+
+
+
+https://github.com/user-attachments/assets/4ff54443-ea8c-4d47-8d04-d667bd0cd34e
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Features
 
 1. Fetch TMDB API: Retrieve and display movie data using The Movie Database (TMDB) API.
